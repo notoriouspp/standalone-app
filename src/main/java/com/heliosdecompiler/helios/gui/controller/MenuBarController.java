@@ -31,9 +31,7 @@ import com.heliosdecompiler.helios.ui.MessageHandler;
 import com.heliosdecompiler.helios.ui.views.file.FileFilter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -46,6 +44,9 @@ public class MenuBarController extends NestedController<MainViewController> {
 
     @FXML
     private MenuBar root;
+
+    @FXML
+    private Menu views;
 
     @Inject
     private EventBus eventBus;
@@ -136,21 +137,19 @@ public class MenuBarController extends NestedController<MainViewController> {
     }
 
     @FXML
-    private void onFernFlower(ActionEvent event) {
+    private void onViewAction(ActionEvent event) {
         AllFilesViewerController controller = getParentController().getAllFilesViewerController();
         TabPane root = controller.getRoot();
-        System.out.println(root);
         if (root != null) {
             Tab selectedFile = root.getSelectionModel().getSelectedItem();
-            EditorController editorController = controller.getEditorController();
-            System.out.println(editorController);
-            if(editorController != null){
-                for(EditorView view : editorController.getRegisteredEditors()){
-                    System.out.println(view.getDisplayName());
-                    if("Fernflower Decompiler".equals(view.getDisplayName())){
-                        controller.openNewEditor(selectedFile, view);
-                        System.out.println("should be open");
-                        return;
+            if(selectedFile != null) {
+                EditorController editorController = controller.getEditorController();
+                if (editorController != null) {
+                    for (EditorView view : editorController.getRegisteredEditors()) {
+                        if (((MenuItem) event.getSource()).getText().equals(view.getDisplayName())) {
+                            controller.openNewEditor(selectedFile, view);
+                            return;
+                        }
                     }
                 }
             }
@@ -196,5 +195,9 @@ public class MenuBarController extends NestedController<MainViewController> {
     @FXML
     public void onAddToContextMenu(ActionEvent actionEvent) {
         userInterfaceController.registerInContextMenu();
+    }
+
+    public Menu getViews() {
+        return views;
     }
 }

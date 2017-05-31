@@ -27,6 +27,8 @@ import com.heliosdecompiler.helios.gui.view.editors.EditorView;
 import com.heliosdecompiler.helios.gui.view.editors.StandardEditors;
 import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
 import com.sun.javafx.scene.control.skin.TabPaneSkin;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -37,6 +39,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,6 +91,13 @@ public class AllFilesViewerController extends NestedController<MainViewControlle
                         behavior.closeTab(fileTab);
                     }
                 }
+            }
+        });
+        root.getSelectionModel().selectedIndexProperty().addListener((observable, o, n) -> {
+            if(n.intValue() != -1){
+                getParentController().getMenuBarController().getViews().setVisible(true);
+            } else {
+                getParentController().getMenuBarController().getViews().setVisible(false);
             }
         });
     }

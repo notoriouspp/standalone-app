@@ -6,25 +6,36 @@
 <?import javafx.scene.layout.VBox?>
 
 <MenuBar fx:id="root" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.heliosdecompiler.helios.gui.controller.MenuBarController">
-    <menus>
-        <Menu mnemonicParsing="false" text="File">
-            <items>
-                <MenuItem mnemonicParsing="false" onAction="#onNewClicked" text="New" />
-                <MenuItem mnemonicParsing="false" onAction="#onOpenClicked" text="Open" />
-                <MenuItem mnemonicParsing="false" onAction="#onAddToContextMenu" text="Add to Context Menu" />
-            </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Settings">
-            <items>
-                <MenuItem mnemonicParsing="false" onAction="#openTransformerSettings" text="Transformer Settings" />
-                <MenuItem mnemonicParsing="false" onAction="#setPython2" text="Set Python 2 Executable" />
-                <MenuItem mnemonicParsing="false" onAction="#selectPath" text="Select Path" />
-            </items>
-        </Menu>
-      <Menu mnemonicParsing="false" text="View">
+    <Menu mnemonicParsing="false" text="File">
+        <MenuItem mnemonicParsing="false" onAction="#onNewClicked" text="New" />
+        <MenuItem mnemonicParsing="false" onAction="#onOpenClicked" text="Open" />
+        <MenuItem mnemonicParsing="false" onAction="#onAddToContextMenu" text="Add to Context Menu" />
+    </Menu>
+    <Menu mnemonicParsing="false" text="Settings">
+        <MenuItem mnemonicParsing="false" onAction="#openTransformerSettings" text="Transformer Settings" />
+        <MenuItem mnemonicParsing="false" onAction="#setPython2" text="Set Python 2 Executable" />
+        <MenuItem mnemonicParsing="false" onAction="#selectPath" text="Select Path" />
+    </Menu>
+    <Menu fx:id="views" mnemonicParsing="false" text="View" visible="false">
+      <Menu mnemonicParsing="false" text="Decompilers">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="CFR Decompiler" />
+              <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Fernflower Decompiler" />
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Procyon Decompiler" />
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Disassemblers">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onFernFlower" text="FernFlower Output" />
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Javap Disassembler" />
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Krakatau Disassembler" />
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Procyon Disassembler" />
          </items>
       </Menu>
-    </menus>
+      <Menu mnemonicParsing="false" text="Misc.">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Hex" />
+            <MenuItem mnemonicParsing="false" onAction="#onViewAction" text="Text" />
+         </items>
+      </Menu>
+    </Menu>
 </MenuBar>

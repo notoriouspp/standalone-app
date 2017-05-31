@@ -18,7 +18,7 @@ or your mouse to select a view.
 
 ### Window
 * To open a new file, simply use `Ctrl-O`.
-..* Arrow keys can be used too!
+  * Arrow keys can be used too!
 navigate the file tree. Enter or clicking a file will open that file into the editor view.
 * If you want to clear the GUI, you can use `Ctrl-N` to start a new session. This will reset all open views.
 * If you have modified a file that you are inspecting, you can use `F5` to refresh the files. This will reload them
@@ -28,7 +28,7 @@ from disk.
 ### Search Bar
 * Simply type your text into the search bar, and press enter to find next matching value in current view.
 * Alternatively you can hold shift when searching (Enter + Shift), and it will find previous matching value.
-..* Note that once search reaches end of document, it `does not reset`.
+  * Note that once search reaches end of document, it `does not reset`.
 
 All files are stored inside the default temporary file directory on your OS. You can delete these files safely.
 

@@ -1,0 +1,52 @@
+/******************************************************************************
+ *
+ * Copyright (c) 2014  Haixing Hu
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     ControlsFX -  Initial implementation and API.
+ *     Haixing Hu (https://github.com/Haixing-Hu/) - Fix bugs and add features.
+ *
+ ******************************************************************************/
+
+.popover  {
+	-fx-background-color: transparent;
+}
+
+.popover > .border {
+	-fx-stroke: linear-gradient(to bottom, rgba(0,0,0, .3), rgba(0, 0, 0, .7)) ;
+	-fx-stroke-width: 0.5;
+	-fx-fill: rgba(255.0,255.0,255.0, .95);
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,.2), 10.0, 0.5, 2.0, 2.0);
+}
+
+.popover > .content {
+	-fx-padding: 10;
+}
+
+.popover > .detached {
+}
+
+.popover > .content > .title > .text  {
+	-fx-padding: 0 6.0 12.0 6.0;
+	-fx-text-fill: rgba(120, 120, 120, .8);
+	-fx-font-weight: bold;
+}
+
+.popover > .content > .title > .icon {
+	-fx-padding: 6.0 0.0 0.0 10.0;
+}
+
+.popover > .content > .title > .icon > .graphics > .circle {
+	-fx-fill: gray ;
+	-fx-effect: innershadow(gaussian, rgba(0,0,0,.2), 3, 0.5, 1.0, 1.0);
+}
+
+.popover > .content > .title > .icon > .graphics > .line {
+	-fx-stroke: white ;
+	-fx-stroke-width: 2;
+}

@@ -8,8 +8,10 @@ If you want to download the latest version, check out the FAQ down below
 There are several keybinds that can be used. To open a new file, simply use `Ctrl-O`. Arrow keys can be used to
 navigate the file tree. Enter or clicking a file will open that file into the editor view.
 
-To open a different view, simply use `Ctrl-T` and a menu will pop up where the cursor is. You can use your arrow keys
+### Decompiling
+* To open a different views, simply use `Ctrl-T` and a menu will pop up where the cursor is. You can use your arrow keys
 or your mouse to select a view.
+* Alternatively while a file is open, select the desired view from the menu option in the toolbar.
 
 If the file is a class file, you will be able to choose from a variety of decompilers and disassemblers. If the file
 is not a class file, you will only be able to view the hex representation and the plain text representation.

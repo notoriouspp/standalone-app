@@ -16,13 +16,24 @@
 
 package com.heliosdecompiler.helios.gui.view.editors;
 
+import com.github.haixing_hu.javafx.control.textfield.SearchBox;
 import com.heliosdecompiler.helios.controller.files.OpenedFile;
+import com.heliosdecompiler.helios.gui.search.impl.PlainTextSearch;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.CodeArea;
 
 import java.util.concurrent.CompletableFuture;
 
 public abstract class EditorView {
+
+    public static final PlainTextSearch PLAIN_TEXT_SEARCH = new PlainTextSearch();
 
     public final Node createView(OpenedFile file, String path) {
         Node node = createView0(file, path);
@@ -43,4 +54,27 @@ public abstract class EditorView {
     }
 
     public abstract String getDisplayName();
+
+    VBox createCodeAreaWithSearch(CodeArea codeArea) {
+        VBox box = new VBox();
+        box.setSpacing(10);
+        box.setPadding(new Insets(20));
+        SearchBox searchBox = new SearchBox();
+        VirtualizedScrollPane<CodeArea> scrollPane = new VirtualizedScrollPane<>(codeArea);
+        searchBox.setOnInputMethodTextChanged(event -> {
+            String text = searchBox.getText();
+            if(text == null || text.isEmpty()) {
+                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, false);
+            }
+        });
+        searchBox.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.ENTER) {
+                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, event.isShiftDown());
+            }
+        });
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+        box.getChildren().add(searchBox);
+        box.getChildren().add(scrollPane);
+        return box;
+    }
 }

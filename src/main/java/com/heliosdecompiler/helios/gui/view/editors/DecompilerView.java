@@ -47,8 +47,6 @@ import java.util.regex.Pattern;
 
 public class DecompilerView extends EditorView {
 
-    private static final PlainTextSearch PLAIN_TEXT_SEARCH = new PlainTextSearch();
-
     private DecompilerController<?> controller;
 
     public DecompilerView(DecompilerController<?> controller) {
@@ -111,26 +109,7 @@ public class DecompilerView extends EditorView {
                 codeArea.getUndoManager().forgetHistory();
             });
         });
-        VBox box = new VBox();
-        box.setSpacing(20);
-        box.setPadding(new Insets(20));
-        SearchBox searchBox = new SearchBox();
-        VirtualizedScrollPane<CodeArea> scrollPane = new VirtualizedScrollPane<>(codeArea);
-        searchBox.setOnInputMethodTextChanged(event -> {
-            String text = searchBox.getText();
-            if(text == null || text.isEmpty()) {
-                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, false);
-            }
-        });
-        searchBox.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if(event.getCode() == KeyCode.ENTER) {
-                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, event.isShiftDown());
-            }
-        });
-        VBox.setVgrow(scrollPane, Priority.ALWAYS);
-        box.getChildren().add(searchBox);
-        box.getChildren().add(scrollPane);
-        return box;
+        return createCodeAreaWithSearch(codeArea);
     }
 
     @Override

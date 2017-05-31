@@ -1,6 +1,8 @@
 package com.heliosdecompiler.helios.gui.search;
 
 import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.StyleClassedTextArea;
+import org.fxmisc.richtext.StyledTextArea;
 
 /**
  * com.heliosdecompiler.helios.gui.search
@@ -11,6 +13,6 @@ import org.fxmisc.richtext.CodeArea;
  */
 public interface Search {
 
-    void search(String search, CodeArea codeArea, boolean reverse);
+    void search(String search, StyledTextArea codeArea, boolean reverse);
 
 }

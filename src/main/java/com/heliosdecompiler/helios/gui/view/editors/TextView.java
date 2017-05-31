@@ -22,6 +22,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.ScrollEvent;
+import org.fxmisc.richtext.CodeArea;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
@@ -29,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
 public class TextView extends EditorView {
     @Override
     protected Node createView0(OpenedFile file, String path) {
-        TextArea textArea = new TextArea();
+        CodeArea textArea = new CodeArea();
         textArea.setWrapText(true);
 
         textArea.setStyle("-fx-font-size: 1em");
@@ -52,7 +53,7 @@ public class TextView extends EditorView {
             }
         });
 
-        textArea.setText(new String(file.getContent(path), StandardCharsets.UTF_8));
+        textArea.replaceText(new String(file.getContent(path), StandardCharsets.UTF_8));
 
         ContextMenu newContextMenu = new ContextMenu();
         MenuItem save = new MenuItem("Save");
@@ -68,7 +69,7 @@ public class TextView extends EditorView {
         newContextMenu.getItems().add(save);
         textArea.setContextMenu(newContextMenu);
 
-        return textArea;
+        return createCodeAreaWithSearch(textArea);
     }
 
     @Override

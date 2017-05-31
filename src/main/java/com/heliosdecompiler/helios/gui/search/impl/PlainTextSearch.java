@@ -1,6 +1,6 @@
 package com.heliosdecompiler.helios.gui.search.impl;
 
-import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.StyledTextArea;
 
 /**
  * com.heliosdecompiler.helios.gui.search.impl
@@ -12,7 +12,7 @@ import org.fxmisc.richtext.CodeArea;
 public class PlainTextSearch extends AbstractSearch {
 
     @Override
-    public void search(String search, CodeArea codeArea, boolean reverse) {
+    public void search(String search, StyledTextArea codeArea, boolean reverse) {
         if(search != null && !search.isEmpty()) {
             if(!search.equals(lastSearch)){
                 lastSearch = null;

@@ -202,7 +202,7 @@ public class DisassemblerView extends EditorView {
             });
         });
 
-        return new VirtualizedScrollPane<>(codeArea);
+        return createCodeAreaWithSearch(codeArea);
     }
 
     @Override

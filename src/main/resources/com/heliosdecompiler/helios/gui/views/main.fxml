@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.*?>
-<?import org.controlsfx.control.StatusBar?>
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.heliosdecompiler.helios.gui.controller.MainViewController">
-    <fx:include fx:id="menuBar" source="menuBar.fxml"/>
-    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
-        <SplitPane dividerPositions="0.25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"
-                        SplitPane.resizableWithParent="false">
-                <children>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.heliosdecompiler.helios.gui.controller.MainViewController">
+    <fx:include fx:id="menuBar" source="menuBar.fxml" />
+    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"  VBox.vgrow="ALWAYS">
                     <fx:include fx:id="fileTree" source="./fileTree.fxml"/>
-                </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"
-                        SplitPane.resizableWithParent="false">
-                <fx:include fx:id="allFilesViewer" source="./allFilesViewer.fxml"/>
+                </AnchorPane>
+                <Accordion>
+                    <panes>
+                        <TitledPane animated="false" text="Field Search">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Method Search">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Constant Search">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+            </VBox>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <fx:include fx:id="allFilesViewer" source="./allFilesViewer.fxml" />
             </AnchorPane>
         </SplitPane>
         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </VBox.margin>
     </AnchorPane>
-    <fx:include fx:id="statusBar" source="statusBar.fxml"/>
+    <fx:include fx:id="statusBar" source="statusBar.fxml" />
 </VBox>

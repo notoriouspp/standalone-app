@@ -140,7 +140,7 @@
                                     </includes>
                                 </filter>
                             </filters>
-                            <minimizeJar>true</minimizeJar>
+                            <!-- <minimizeJar>true</minimizeJar> -->
                         </configuration>
                     </execution>
                 </executions>

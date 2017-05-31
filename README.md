@@ -12,7 +12,7 @@ Below you will find a overview of the features, and how to use them.
 ### Decompiling
 * To open a different views, simply use `Ctrl-T` and a menu will pop up where the cursor is. You can use your arrow keys
 or your mouse to select a view.
-..* If the file is a class file, you will be able to choose from a variety of decompilers and disassemblers. If the file
+  * If the file is a class file, you will be able to choose from a variety of decompilers and disassemblers. If the file
     is not a class file, you will only be able to view the hex representation and the plain text representation.
 * Alternatively while a file is open, select the desired view from the menu option in the toolbar.
 

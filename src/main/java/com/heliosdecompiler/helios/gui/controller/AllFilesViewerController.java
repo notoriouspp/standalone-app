@@ -164,7 +164,7 @@ public class AllFilesViewerController extends NestedController<MainViewControlle
 //        }
 
         try {
-            GuiceFXMLLoader.Result tabResult = loader.load(getClass().getResource("/views/fileViewer.fxml"));
+            GuiceFXMLLoader.Result tabResult = loader.load(getClass().getResource("/com/heliosdecompiler/helios/gui/views/fileViewer.fxml"));
             TabPane fileTabPane = tabResult.getRoot();
             Tab allFilesTab = new Tab(node.getDisplayName());
             allFilesTab.setContent(fileTabPane);

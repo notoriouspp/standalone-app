@@ -33,6 +33,7 @@ public class Constants {
     public static final File ADDONS_DIR = new File(DATA_DIR, "addons");
     public static final File SETTINGS_FILE_XML = new File(DATA_DIR, "settings.xml");
     public static final String NEWLINE = System.lineSeparator();
+    public static final double SUB_VERSION = 1.0;
     private static final Runtime RUNTIME = Runtime.getRuntime();
     public static final Supplier<Integer> USED_MEMORY = () -> (int) ((RUNTIME.totalMemory() - RUNTIME.freeMemory()) / MB);
     public static final Supplier<Integer> TOTAL_MEMORY = () -> (int) (RUNTIME.maxMemory() / MB);

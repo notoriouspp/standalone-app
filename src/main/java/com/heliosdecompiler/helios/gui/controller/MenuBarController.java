@@ -95,13 +95,13 @@ public class MenuBarController extends NestedController<MainViewController> {
         });
 
         try {
-            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/views/pathEditor.fxml"));
+            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/com/heliosdecompiler/helios/gui/views/pathEditor.fxml"));
             pathEditorController = result.getController();
         } catch (IOException ex) {
             messageHandler.handleException(Message.ERROR_UNKNOWN_ERROR.format(), ex);
         }
         try {
-            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/views/transformerSettings.fxml"));
+            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/com/heliosdecompiler/helios/gui/views/transformerSettings.fxml"));
             transformerSettingsController = result.getController();
         } catch (IOException ex) {
             messageHandler.handleException(Message.ERROR_UNKNOWN_ERROR.format(), ex);

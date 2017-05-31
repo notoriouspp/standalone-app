@@ -72,7 +72,7 @@ public class BackgroundTaskController {
                 if (c.next()) {
                     for (BackgroundTask task : c.getAddedSubList()) {
                         try {
-                            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/views/backgroundTaskEntry.fxml"));
+                            GuiceFXMLLoader.Result result = loader.load(getClass().getResource("/com/heliosdecompiler/helios/gui/views/backgroundTaskEntry.fxml"));
                             BackgroundTaskEntryController controller = result.getController();
                             controller.setParentController(BackgroundTaskController.this);
                             controller.setName(task.getDisplayName());

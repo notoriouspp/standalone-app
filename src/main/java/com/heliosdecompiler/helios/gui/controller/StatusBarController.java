@@ -80,7 +80,7 @@ public class StatusBarController extends NestedController<MainViewController> {
         }, "Status Bar Updater").start();
 
         try {
-            backgroundTaskController = loader.load(getClass().getResource("/views/backgroundTasks.fxml")).getController();
+            backgroundTaskController = loader.load(getClass().getResource("/com/heliosdecompiler/helios/gui/views/backgroundTasks.fxml")).getController();
         } catch (IOException e) {
             messageHandler.handleException(Message.ERROR_UNKNOWN_ERROR.format(), e);
         }

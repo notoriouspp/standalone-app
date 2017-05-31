@@ -21,17 +21,13 @@ import com.cathive.fx.guice.GuiceFXMLLoader;
 import com.google.inject.*;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
+import com.heliosdecompiler.helios.Constants;
 import com.heliosdecompiler.helios.Helios;
 import com.heliosdecompiler.helios.controller.UpdateController;
-import com.heliosdecompiler.helios.controller.backgroundtask.BackgroundTask;
-import com.heliosdecompiler.helios.controller.backgroundtask.BackgroundTaskHelper;
-import com.heliosdecompiler.helios.gui.controller.AllFilesViewerController;
-import com.heliosdecompiler.helios.gui.controller.MenuBarController;
 import com.heliosdecompiler.helios.gui.controller.editors.DisassemblerViewFactory;
 import com.heliosdecompiler.helios.gui.controller.editors.EditorController;
 import com.heliosdecompiler.helios.gui.view.editors.DisassemblerView;
 import com.heliosdecompiler.helios.ui.MessageHandler;
-import com.sun.glass.ui.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -71,14 +67,15 @@ public class JavaFXApplication extends GuiceApplication {
                 System.exit(0);
             });
 
-            primaryStage.setTitle("Helios - v" + updateController.getVersion() + " | By samczsun");
+            primaryStage.setTitle("Helios - v" + updateController.getVersion() + "_" + Constants.SUB_VERSION + " | By samczsun | Notorious Fork");
             primaryStage.getIcons().add(new Image("/res/icon.png"));
 
-            primaryStage.setScene(new Scene(loader.load(getClass().getResource("/views/main.fxml")).getRoot()));
+            Scene value = new Scene(loader.load(getClass().getResource("views/main.fxml")).getRoot());
+            value.getStylesheets().add(getClass().getResource("modena-dark.css").toExternalForm());
+            primaryStage.setScene(value);
 
             // Special case
             getInjector().injectMembers(getInjector().getInstance(MessageHandler.class));
-
             INSTANCE.set(this);
             FINISHED_STARTUP_FUTURE.complete(null);
         } catch (Throwable t) {

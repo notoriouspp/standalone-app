@@ -5,7 +5,7 @@ Helios is an all-in-one Java reverse engineering tool. It features integration w
 
 If you want to download the latest version, check out the FAQ down below
 
-##Basic Usage
+## Basic Usage
 This is a simple to use decompiler with numerous key variations and GUI options to assist you!
 Below you will find a overview of the features, and how to use them.
 
@@ -25,10 +25,10 @@ navigate the file tree. Enter or clicking a file will open that file into the ed
 from disk.
 * To close the current opened file, use `Ctrl-W`. To close the current opened view, use `Ctrl-Shift-W`
 
-###Search Bar
+### Search Bar
 * Simply type your text into the search bar, and press enter to find next matching value in current view.
 * Alternatively you can hold shift when searching (Enter + Shift), and it will find previous matching value.
-..* Note that once search reaches end of document, it **does not reset**.
+..* Note that once search reaches end of document, it `does not reset`.
 
 All files are stored inside the default temporary file directory on your OS. You can delete these files safely.
 

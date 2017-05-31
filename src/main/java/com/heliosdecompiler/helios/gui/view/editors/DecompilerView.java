@@ -16,12 +16,21 @@
 
 package com.heliosdecompiler.helios.gui.view.editors;
 
+import com.github.haixing_hu.javafx.control.textfield.SearchBox;
 import com.heliosdecompiler.helios.controller.files.OpenedFile;
 import com.heliosdecompiler.helios.controller.transformers.decompilers.DecompilerController;
+import com.heliosdecompiler.helios.gui.search.impl.PlainTextSearch;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
@@ -38,6 +47,8 @@ import java.util.regex.Pattern;
 
 public class DecompilerView extends EditorView {
 
+    private static final PlainTextSearch PLAIN_TEXT_SEARCH = new PlainTextSearch();
+
     private DecompilerController<?> controller;
 
     public DecompilerView(DecompilerController<?> controller) {
@@ -52,7 +63,7 @@ public class DecompilerView extends EditorView {
     @Override
     protected Node createView0(OpenedFile file, String path) {
         CodeArea codeArea = new CodeArea();
-
+        codeArea.setAutoScrollOnDragDesired(true);
         codeArea.setStyle("-fx-font-size: 1em");
         codeArea.getProperties().put("fontSize", 1);
 
@@ -100,8 +111,26 @@ public class DecompilerView extends EditorView {
                 codeArea.getUndoManager().forgetHistory();
             });
         });
-
-        return new VirtualizedScrollPane<>(codeArea);
+        VBox box = new VBox();
+        box.setSpacing(20);
+        box.setPadding(new Insets(20));
+        SearchBox searchBox = new SearchBox();
+        VirtualizedScrollPane<CodeArea> scrollPane = new VirtualizedScrollPane<>(codeArea);
+        searchBox.setOnInputMethodTextChanged(event -> {
+            String text = searchBox.getText();
+            if(text == null || text.isEmpty()) {
+                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, false);
+            }
+        });
+        searchBox.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.ENTER) {
+                PLAIN_TEXT_SEARCH.search(searchBox.getText(), codeArea, event.isShiftDown());
+            }
+        });
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+        box.getChildren().add(searchBox);
+        box.getChildren().add(scrollPane);
+        return box;
     }
 
     @Override

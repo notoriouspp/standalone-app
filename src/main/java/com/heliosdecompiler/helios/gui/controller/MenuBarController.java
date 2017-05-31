@@ -25,11 +25,15 @@ import com.heliosdecompiler.helios.controller.ProcessController;
 import com.heliosdecompiler.helios.controller.files.OpenedFileController;
 import com.heliosdecompiler.helios.controller.ui.UserInterfaceController;
 import com.heliosdecompiler.helios.Message;
+import com.heliosdecompiler.helios.gui.controller.editors.EditorController;
+import com.heliosdecompiler.helios.gui.view.editors.EditorView;
 import com.heliosdecompiler.helios.ui.MessageHandler;
 import com.heliosdecompiler.helios.ui.views.file.FileFilter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -129,6 +133,28 @@ public class MenuBarController extends NestedController<MainViewController> {
     @FXML
     private void selectPath(ActionEvent event) {
         pathEditorController.open();
+    }
+
+    @FXML
+    private void onFernFlower(ActionEvent event) {
+        AllFilesViewerController controller = getParentController().getAllFilesViewerController();
+        TabPane root = controller.getRoot();
+        System.out.println(root);
+        if (root != null) {
+            Tab selectedFile = root.getSelectionModel().getSelectedItem();
+            EditorController editorController = controller.getEditorController();
+            System.out.println(editorController);
+            if(editorController != null){
+                for(EditorView view : editorController.getRegisteredEditors()){
+                    System.out.println(view.getDisplayName());
+                    if("Fernflower Decompiler".equals(view.getDisplayName())){
+                        controller.openNewEditor(selectedFile, view);
+                        System.out.println("should be open");
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     @FXML

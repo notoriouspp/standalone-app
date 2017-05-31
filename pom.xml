@@ -11,7 +11,33 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <winVersion>1.0.5.0</winVersion>
+
+        <!-- Version numbers of the maven plugins -->
+        <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+        <maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+        <maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
+        <maven-assembly-plugin.version>2.2.1</maven-assembly-plugin.version>
+        <maven-resources-plugin.version>2.4.3</maven-resources-plugin.version>
+        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.17</maven-failsafe-plugin.version>
+        <maven-surefire-report-plugin.version>2.17</maven-surefire-report-plugin.version>
+        <maven-project-info-reports-plugin.version>2.7</maven-project-info-reports-plugin.version>
+        <findbugs-maven-plugin.version>3.0.0</findbugs-maven-plugin.version>
+        <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
+        <jacoco-maven-plugin.version>0.7.2.201409121644</jacoco-maven-plugin.version>
+        <dashboard-maven-plugin.version>1.0.0-beta-1</dashboard-maven-plugin.version>
+        <!-- Version numbers for the logging utilities -->
+        <slf4j.version>[1.7.7,2.0.0)</slf4j.version>
+        <logback.version>[1.0.7,2.0.0)</logback.version>
+        <!-- Version numbers of the 3rd part components -->
+        <junit.version>[4.11,5.0)</junit.version>
+        <xmlunit.version>[1.5,2.0)</xmlunit.version>
+        <jsr305.version>[3.0.0, 4.0.0)</jsr305.version>
+
+        <guava.version>19.0</guava.version>
     </properties>
+
 
     <build>
         <finalName>helios-standalone</finalName>
@@ -139,7 +165,7 @@
                             <classPath>
                                 <mainClass>com.heliosdecompiler.helios.Helios</mainClass>
                             </classPath>
-                            <customProcName>true</customProcName>
+                            <!-- <customProcName>true</customProcName> -->
                             <icon>standalone-app.ico</icon>
                             <jre>
                                 <minVersion>1.8.0</minVersion>
@@ -180,6 +206,48 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <!-- The JUnit package is defined to be a compile time package, since the
+              java-commons project provides some utility functions for JUnit, and thus it cannot
+              pass the compiling until the JUnit is a compile time dependency. -->
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <type>jar</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <type>jar</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-debug-all</artifactId>
@@ -225,7 +293,6 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
-
         <dependency>
             <groupId>com.googlecode.d2j</groupId>
             <artifactId>dex-tools</artifactId>

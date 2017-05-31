@@ -174,7 +174,7 @@ public class AllFilesViewerController extends NestedController<MainViewControlle
         }
     }
 
-    private void openNewEditor(Tab fileTab, EditorView editor) {
+    void openNewEditor(Tab fileTab, EditorView editor) {
         FileTabProperties properties = (FileTabProperties) fileTab.getUserData();
         TabPane filePane = (TabPane) fileTab.getContent();
         if (properties.getOpenedEditors().containsKey(editor.getDisplayName())) {
@@ -196,6 +196,14 @@ public class AllFilesViewerController extends NestedController<MainViewControlle
         OpenedFile file = (OpenedFile) node.getMetadata().get(OpenedFile.OPENED_FILE);
 
         return file.getTarget().toString() + "\0" + node.getMetadata().get(OpenedFile.FULL_PATH_KEY); // should be unique cuz nothing can use \0 in filename (right?)
+    }
+
+    public TabPane getRoot() {
+        return root;
+    }
+
+    public EditorController getEditorController() {
+        return editorController;
     }
 
     public void clear() {
